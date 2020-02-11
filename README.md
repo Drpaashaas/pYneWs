@@ -13,7 +13,7 @@ pYneWs is a full python application which is using an API to request all news re
 This script is powered by NewsAPI.org!
 There is no specific use, so enjoy doing anything you want to use it for.
 
-<b>Make sure if you use the application for your business that you change to API key to your own!<b>
+<b>Make sure if you use the application for your business that you change to API key to your own!</b>
 
 
 # how to use?
@@ -33,5 +33,5 @@ You can get an API key at newsapi.org, just right for your needs.
 # why pYneWs?
 honestly I don't know why, I just thought of a easier way to search news without first opening the web browser.
 
-<b>If you have any ideas for another project mail me at: yeetmail09@gmail.com (I am also available for any improvement options)<b>
+<b>If you have any ideas for another project mail me at: yeetmail09@gmail.com (I am also available for any improvement options)</b>
  
