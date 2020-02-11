@@ -1,5 +1,5 @@
 # pYneWs V1.0
-Get the latest news with this python application.
+Get the latest news with this python script.
 
 
 # What is pYneWs?
