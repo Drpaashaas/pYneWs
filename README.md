@@ -1,5 +1,6 @@
 # pYneWs V1.0
 Get the latest news with this python script.
+This script is usable in all languages.
 
 
 # What is pYneWs?
