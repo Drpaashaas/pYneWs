@@ -33,6 +33,10 @@ if newsJson.status_code == 200:
         print("")
         if headers == "top-headlines":
             print("Sorry, there is no headline information about", cat + ". Try to search on everything instead of headlines.")
+            input("press enter to quit...")
+        else:
+            print("Sorry, there is no news about", cat + ".")
+            input("press enter to quit...")
 
     else:
         i = 0
