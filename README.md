@@ -32,7 +32,6 @@ you can change the API key at this line:
 You can get an API key at newsapi.org, just right for your needs.
 
 # why pYneWs?
-honestly I don't know why, I just thought of a easier way to search news without first opening the web browser.
+honestly I don't know why..
 
-<b>If you have any ideas for another project mail me at: yeetmail09@gmail.com (I am also available for any improvement options)</b>
  
