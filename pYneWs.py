@@ -1,80 +1,121 @@
 import requests
 import json
 import time
+import os
+from sys import platform
 sleep = time.sleep
 
-print("")
-print("Thanks for using my news application! pYneWs V1.0")
-print("")
-cat = input("What news you want to read? : ")
-head = input("Headlines only or everything? h/e: ")
-sort = input("Sort on date, popularity or nothing? d/p/n: ")
 
-if head == "h" or head == "H" or head == "head" or head == "Head":
-    headers = "top-headlines"
-else:
-    headers = "everything"
+class newsApi():
 
-if sort == "d" or sort == "D" or sort == "date" or sort == "Date":
-    sorting = "publishedAt"
-if sort == "p" or sort == "P" or sort == "popularity" or sort == "Popularity":
-    sorting = "popularity"
-else:
-    sorting = ""
+    # def __init__(self):
+        # self.apiKey
+        # self.headers
+        # self.cat
+        # self.sortType
+        # self.newsApiJsonData
 
+    def apiKey(self, apikey):
+    	self.apiKey = apikey
 
-newsJson = requests.get("https://newsapi.org/v2/" + headers + "?q=" + cat + "&sortBy=" + sorting + "&apiKey=ceb21cd319bf4f9f9d18bc043df7a6c6")
+    def varValue(self):
+    	self.cat = input("News articles about: ")
+    	head = input("Headlines or Everything | h/e: ")
+    	self.headers = self.headVal(head)
+    	sort = input("Sort on d/date| p/popularity| n/nothing: ")
+    	self.sortType = self.sortVal(sort)
 
-if newsJson.status_code == 200:
+    def createJson(self):
+        self.newsApiJsonData = requests.get("https://newsapi.org/v2/" + str(self.headers) + "?q=" + str(self.cat) + self.sortType + self.apiKey)
 
-    articles = newsJson.json()["articles"]
+    def headVal(self, head):
+    	if head == "h" or head == "H":
+    		return "top-headlines"
+    	else:
+    		return "everything"
 
-    if not articles:
-        print("")
-        if headers == "top-headlines":
-            print("Sorry, there is no headline information about", cat + ". Try to search on everything instead of headlines.")
-            input("press enter to quit...")
-        else:
-            print("Sorry, there is no news about", cat + ".")
-            input("press enter to quit...")
+    def sortVal(self, sort):
+    	if sort == "d" or sort == "D":
+    		return "&sortBy=publishedAt"
+    	elif sort == "p" or sort == "P":
+    		return "&sortBy=popularity"
+    	else:
+    		return "&sortBy="
 
-    else:
-        i = 0
-        for article in articles:
-            i = i + 1
-            print("")
-            print(article['title'])
-            print(article['url'])
-            print(article['publishedAt'])
-            sleep(1)
-            if i == 5:
-                print("")
-                input("press enter to continue..")
-            if i == 10:
-                print("")
-                input("press enter to continue..")
-            if i == 15:
-                print("")
-                input("press enter to continue..")
-            if i == 20:
-                print("")
-                input("press enter to continue..")
-            if i == 25:
-                print("")
-                input("press enter to continue..")
-            if i == 30:
-                print("")
-                input("press enter to continue..")
-            if i == 35:
-                print("")
-                input("press enter to continue..")
+    def readArticles(self):
+    	if self.newsApiJsonData.status_code == 200:
+    		articles = self.newsApiJsonData.json()["articles"]
 
-        sleep(2)
-        print("")
-        print("Please leave a donation at: https://something.com/donate")
-        print("")
-        input("press enter to leave...")
+    		if not articles:
+    			empty()
+    			if self.headers == "top-headlines":
+    				print("We could not find headline articles about " + self.cat)
+    			else:
+    				print("We could not find news articles about " + self.cat)
 
-else:
-    print("Sorry, something went wrong with the connection. error:", newsJson.status_code)
+    		else:
+    			i = 0
+    			for article in articles:
+    				i += 1
+    				empty()
+    				empty()
+    				print('\033[1m' + article['title'] + '\033[0m')
+    				print(article['publishedAt'])
+    				print(article['url'])
+    				if i == 3:
+    					empty()
+    					input("press any key to continue searching...")
+    					clear()
+    					i = 0
 
+    			sleep(1)
+    			empty()
+    			print("No more articles found.")
+    			input("press any key to continue...")
+    	else:
+    		print("connection error: ", self.newsApiJsonData.status_code)
+
+    	stop()
+
+    				
+
+def empty():
+	print("")
+
+def stop():
+	empty()
+	j = input("do you want to continue? y/n: ")
+	if j == "y" or j == "Y":
+		start()
+	else:
+		exit()
+
+def clear():
+	if platform == "win32":
+		os.system("cls")
+	else:
+		os.system("clear")
+
+def start():
+	
+	clear()
+
+	empty()
+	print("Welcome to pYneWs V1.1")
+	empty()
+	
+	ji = input("Do you have your own newsApi key? y/n: ")
+	
+	if ji == "y" or ji == "Y":
+		key = input("copy your api key here: ")
+		apikey = "&apiKey=" + key
+	else:
+		apikey = "&apiKey=ceb21cd319bf4f9f9d18bc043df7a6c6"
+
+	newsApiSearch = newsApi()
+	newsApiSearch.apiKey(apikey)
+	newsApiSearch.varValue()
+	newsApiSearch.createJson()
+	newsApiSearch.readArticles()
+
+start()
