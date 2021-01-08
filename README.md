@@ -7,8 +7,8 @@ This script is usable with any language. Examples: Dutch, English, German, franc
 pYneWs is a full python application which is using an API to request all news related to your search.    
  output example:    
      
-    Unpatched Citrix vulnerability now exploited, patch weeks away    
-    https://arstechnica.com/information-technology/2020/01/unpatched-citrix-vulnerability-now-exploited-patch-weeks-away/    
-    2020-01-13T20:31:37Z    
+    US Capitol riot sparks a Republican reckoning - The Globe and Mail
+    2021-01-08T03:17:00Z
+    https://www.theglobeandmail.com/world/us-politics/article-us-capitol-riot-sparks-a-republican-reckoning/   
     
 This script is powered by NewsAPI.org!
